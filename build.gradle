@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.distribuida'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    helidonVersion = '3.0.2'
+}
+
+dependencies {
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonVersion}")
+    implementation 'io.helidon.microprofile.server:helidon-microprofile-server'
+    implementation 'org.glassfish.jersey.media:jersey-media-json-binding'
+    runtimeOnly 'org.jboss:jandex'
+
+    implementation 'org.postgresql:postgresql:42.4.0'
+    implementation 'com.zaxxer:HikariCP:5.0.1'
+
+    implementation 'org.jdbi:jdbi3-core:3.36.0'
+    implementation 'org.jdbi:jdbi3-sqlobject:3.36.0'
+    testImplementation 'org.jdbi:jdbi3-postgres:3.36.0'
+
+}
+
+sourceSets{
+    main{
+        output.resourcesDir = file("${buildDir}/classes/java/main")
+    }
+}
